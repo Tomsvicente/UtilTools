@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Calculadora de Ganancias Crypto</h1>
+
+  <!-- COMPRA -->
+  <div class="bloque">
+    <h2>Compra</h2>
+
+    <label>Precio por moneda ($):</label>
+    <input type="number" [(ngModel)]="precioCompra" />
+
+    <label>Monto total invertido ($):</label>
+    <input type="number" [(ngModel)]="montoCompra" />
+
+    <div class="resultado">
+      <strong>Cantidad comprada:</strong>
+      {{ cantidadComprada | number: '1.2-6' }} monedas
+    </div>
+  </div>
+
+  <!-- VENTA -->
+  <div class="bloque">
+    <h2>Venta</h2>
+
+    <label>Precio de venta por moneda ($):</label>
+    <input type="number" [(ngModel)]="precioVenta" />
+
+    <label>Cantidad a vender:</label>
+    <input type="number" [(ngModel)]="cantidadVenta" />
+
+    <div class="resultado">
+      <strong>Monto total recibido:</strong>
+      ${{ montoVenta | number: '1.2-2' }}
+    </div>
+  </div>
+
+  <!-- GANANCIA -->
+  <div class="resultado final">
+    <h2>Ganancia/Pérdida</h2>
+    <div [style.color]="ganancia >= 0 ? 'lightgreen' : 'tomato'">
+      ${{ ganancia | number: '1.2-2' }}
+    </div>
+  </div>
+</div>

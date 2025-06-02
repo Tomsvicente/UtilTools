@@ -1,14 +1,11 @@
 import { Routes } from '@angular/router';
 import { CalculadoraComponent } from './calculadora/calculadora';
+import { GananciasComponent } from './ganancias/ganancias';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'calculadora',
-    pathMatch: 'full'
-  },
-  {
-    path: 'calculadora',
-    loadComponent: () => import('./calculadora/calculadora').then(m => m.CalculadoraComponent)
-  }
+  { path: '', redirectTo: 'interes', pathMatch: 'full' },
+  { path: 'interes', component: CalculadoraComponent },
+  { path: 'ganancias', component: GananciasComponent }
 ];
+
+

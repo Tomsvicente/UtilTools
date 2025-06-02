@@ -69,7 +69,7 @@ body.dark select:focus {
 
 /* Botones light */
 body.light button {
-  background-color: var(--accent-color);
+  background-color: #2a2a2a;
   color: #fff;
   border: none;
   border-radius: var(--radius);
@@ -149,3 +149,70 @@ body.dark .resultados.highlight {
   }
 }
 
+
+/* Inputs, adaptados para ambos modos, usando variables y estilos base */
+
+body.light input,
+body.dark input {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border-color);
+  font-size: 1rem;
+  font-family: var(--font-family);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Fondos y colores específicos para cada modo */
+body.light input {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+body.dark input {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+/* Focus styles para inputs */
+body.light input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px var(--accent-color);
+  outline: none;
+}
+
+body.dark input:focus {
+  border-color: #9c9a9a;
+  box-shadow: 0 0 6px #9c9a9a;
+  outline: none;
+}
+
+/* Para el bloque, que es tipo tarjeta, usamos fondo e sombra acorde al modo */
+body.light .bloque {
+  background-color: var(--background-color);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+body.dark .bloque {
+  background-color: #2a2a2a;; /* fondo oscuro un poco más claro que body */
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+body.dark .header {
+  background-color: #2a2a2a;; /* fondo oscuro un poco más claro que body */
+
+}
+
+body.dark .nav-links a {
+  color: #e0e0e0;
+}
+
+body.light .nav-links a {
+  color: var(--text-color);
+}

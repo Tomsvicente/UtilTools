@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CalculadoraComponent } from './calculadora/calculadora';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CalculadoraComponent],
+  imports: [RouterModule, CommonModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

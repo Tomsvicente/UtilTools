@@ -1,8 +1,16 @@
 <header class="header">
-  <h1>UtilTools</h1>
-  <button (click)="toggleDarkMode()">🌙/☀️</button>
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Interés</a>
+    <a routerLink="/ganancias" routerLinkActive="activo">Ganancias</a>
+  </nav>
+
+  <button class="mode-toggle" (click)="toggleDarkMode()" aria-label="Cambiar modo">
+    <span *ngIf="!darkMode" class="icon-sun">☀️</span>
+    <span *ngIf="darkMode" class="icon-moon">🌙</span>
+  </button>
 </header>
 
+
 <main>
-  <app-calculadora></app-calculadora>
+  <router-outlet></router-outlet>
 </main>
