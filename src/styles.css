@@ -1,1 +1,151 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --accent-color: #9c9a9a;
+  --input-bg: #f4f4f4;
+  --border-color: #ccc;
+  --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.light {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Inputs light */
+body.light input,
+body.light textarea,
+body.light select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1.5px solid var(--border-color);
+  outline: none;
+  box-shadow: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  transition: border-color 0.2s;
+}
+
+body.light input:focus,
+body.light textarea:focus,
+body.light select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px var(--accent-color);
+}
+
+/* Inputs dark */
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1.5px solid #555;
+  outline: none;
+  box-shadow: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  transition: border-color 0.2s;
+}
+
+body.dark input:focus,
+body.dark textarea:focus,
+body.dark select:focus {
+  border-color: #9c9a9a;
+  box-shadow: 0 0 6px #9c9a9a;
+}
+
+/* Botones light */
+body.light button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+}
+
+body.light button:hover {
+  background-color: #7f7d7d;
+}
+
+/* Botones dark */
+body.dark button {
+  background-color: #555;
+  color: #e0e0e0;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+}
+
+body.dark button:hover {
+  background-color: #777;
+}
+
+/* Headers y textos */
+body.light h1, body.light h2, body.light h3 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+body.dark h1, body.dark h2, body.dark h3 {
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+/* Listas */
+body.light ul {
+  color: var(--text-color);
+}
+
+body.dark ul {
+  color: #e0e0e0;
+}
+
+/* Modo claro */
+body.light .resultados.highlight {
+  animation: destello-claro 2s ease;
+}
+
+@keyframes destello-claro {
+  from {
+    background-color: rgba(255, 255, 0, 0.2); /* destello amarillo suave */
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+/* Modo oscuro */
+body.dark .resultados.highlight {
+  animation: destello-oscuro 2s ease;
+}
+
+@keyframes destello-oscuro {
+  from {
+    background-color: rgba(0, 255, 255, 0.15); 
+  }
+  to {
+    background-color: transparent;
+  }
+}
+

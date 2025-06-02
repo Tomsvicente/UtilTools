@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CalculadoraComponent } from './calculadora/calculadora';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CalculadoraComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected title = 'UtilTools';
+  darkMode = false;
+
+  constructor(){
+    const savedTheme = localStorage.getItem('theme');
+    this.darkMode = savedTheme === 'dark';
+
+    document.body.className = this.darkMode ? 'dark' : 'light';
+  }
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    document.body.className = this.darkMode ? 'dark' : 'light';
+
+    localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+  }
 }

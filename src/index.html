@@ -8,6 +8,10 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  <script>
+    const theme = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(theme); // Aplica 'light' si no hay ninguno guardado
+  </script>
   <app-root></app-root>
 </body>
 </html>

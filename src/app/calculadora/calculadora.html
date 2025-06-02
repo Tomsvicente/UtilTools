@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Calculadora de Interés Compuesto</h1>
+
+  <div class="inputs">
+    <!-- Escenario 1 -->
+    <div>
+      <h2>Escenario 1</h2>
+      <label>Monto inicial:</label>
+      <input type="number" [(ngModel)]="montoInicial1" />
+      <label>Porcentaje:</label>
+      <input type="number" [(ngModel)]="porcentaje1" />
+      <label>Iteraciones:</label>
+      <input type="number" [(ngModel)]="repeticiones1"  (keydown.enter)="calcularInteres()"/>
+    </div>
+
+    <!-- Escenario 2 -->
+    <div>
+      <h2>Escenario 2</h2>
+      <label>Monto inicial:</label>
+      <input type="number" [(ngModel)]="montoInicial2" />
+      <label>Porcentaje:</label>
+      <input type="number" [(ngModel)]="porcentaje2" />
+      <label>Iteraciones:</label>
+      <input type="number" [(ngModel)]="repeticiones2"  (keydown.enter)="calcularInteres()"/>
+    </div>
+  </div>
+
+  <button (click)="calcularInteres()">Calcular</button>
+
+  <div style="max-width: 800px; margin-top: 2rem;">
+  <canvas
+    baseChart
+    [data]="chartData"
+    [options]="chartOptions"
+    [type]="'line'">
+  </canvas>
+</div>
+
+
+  <div class="resultados" [class.highlight]="resaltarResultados" #resultados>
+    <div>
+      <h3>Resultados Escenario 1</h3>
+      <ul>
+        <li *ngFor="let r of resultados1">{{ r }}</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Resultados Escenario 2</h3>
+      <ul>
+        <li *ngFor="let r of resultados2">{{ r }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
