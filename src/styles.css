@@ -216,3 +216,24 @@ body.dark .nav-links a {
 body.light .nav-links a {
   color: var(--text-color);
 }
+
+
+
+
+body.light .buttonSellAll {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.light .buttonSellAll:hover {
+  background-color: #7f7d7d;
+}
+
+body.dark .buttonSellAll {
+  background-color: #555;
+  color: white;
+}
+
+body.dark .buttonSellAll:hover {
+  background-color: #777;
+}

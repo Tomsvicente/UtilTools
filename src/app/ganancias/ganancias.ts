@@ -19,15 +19,32 @@ export class GananciasComponent {
   cantidadVenta: number = 0;
 
   // Calculados
+
   get cantidadComprada(): number {
-    return this.precioCompra > 0 ? this.montoCompra / this.precioCompra : 0;
+  return this.precioCompra > 0 ? this.truncarDosDecimales(this.montoCompra / this.precioCompra) : 0;
   }
 
   get montoVenta(): number {
-    return this.precioVenta * this.cantidadVenta;
+    return this.truncarDosDecimales(this.precioVenta * this.cantidadVenta);
   }
 
   get ganancia(): number {
-    return this.montoVenta - this.montoCompra;
+    return this.truncarDosDecimales(this.montoVenta - this.montoCompra);
   }
+
+  get porcentajeGanancia(): number {
+    const inversion = this.montoCompra;
+    if (inversion === 0) return 0;
+    return this.truncarDosDecimales(((this.ganancia) / inversion) * 100);
+  }
+
+  venderTodo() {
+  this.cantidadVenta = this.cantidadComprada;
+  }
+
+  private truncarDosDecimales(valor: number): number {
+    return Math.round(valor * 100) / 100;
+  }
+
+
 }

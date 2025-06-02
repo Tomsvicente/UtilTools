@@ -2,37 +2,77 @@
   max-width: 600px;
   margin: auto;
   padding: 2rem;
-  font-family: var(--font-family);
-  color: inherit; /* hereda el color según modo */
+  font-family: var(--font-family, 'Segoe UI', sans-serif);
+  color: inherit;
 }
 
 label {
   display: block;
-  margin-top: 0.75rem;
-  color: inherit; /* hereda el color según modo */
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
   font-weight: 600;
 }
 
 input {
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-  background-color: white;
-  color: var(--text-color);
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #ccc);
+  background-color: var(--input-bg, #fff);
+  color: var(--text-color, #333);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-color, #007bff);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
 .resultado {
-  margin-top: 0.75rem;
-  color: inherit;
+  margin-top: 1rem;
   font-weight: 500;
 }
 
-/* Texto final destacado */
 .final {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--accent-color);
+  margin-top: 2rem;
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button input {
+  flex: 1;
+}
+
+.buttonSellAll {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--accent-color, #007bff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonSellAll:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+  .input-with-button {
+    flex-direction: column;
+  }
+
+  .buttonSellAll {
+    width: 100%;
+  }
 }

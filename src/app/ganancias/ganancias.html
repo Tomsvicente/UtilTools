@@ -13,31 +13,36 @@
 
     <div class="resultado">
       <strong>Cantidad comprada:</strong>
-      {{ cantidadComprada | number: '1.2-6' }} monedas
+      {{ cantidadComprada | number: '1.2-2' }} monedas
     </div>
   </div>
 
-  <!-- VENTA -->
-  <div class="bloque">
+    <!-- VENTA -->
+    <div class="bloque">
     <h2>Venta</h2>
 
-    <label>Precio de venta por moneda ($):</label>
-    <input type="number" [(ngModel)]="precioVenta" />
+    <label for="precioVenta">Precio de venta por moneda ($):</label>
+    <input id="precioVenta" type="number" [(ngModel)]="precioVenta" />
 
-    <label>Cantidad a vender:</label>
-    <input type="number" [(ngModel)]="cantidadVenta" />
+    <label for="cantidadVenta">Cantidad a vender:</label>
+    <div class="input-with-button">
+        <input id="cantidadVenta" type="number" [(ngModel)]="cantidadVenta" />
+        <button type="button" (click)="venderTodo()" class="buttonSellAll">Todo</button>
+    </div>
 
     <div class="resultado">
-      <strong>Monto total recibido:</strong>
-      ${{ montoVenta | number: '1.2-2' }}
+        <strong>Monto total recibido:</strong>
+        ${{ montoVenta | number: '1.2-2' }}
     </div>
-  </div>
+    </div>
+
 
   <!-- GANANCIA -->
   <div class="resultado final">
-    <h2>Ganancia/Pérdida</h2>
-    <div [style.color]="ganancia >= 0 ? 'lightgreen' : 'tomato'">
-      ${{ ganancia | number: '1.2-2' }}
-    </div>
-  </div>
+  Ganancia: {{ ganancia | number: '1.2-2' }} USD
+  <span 
+    [style.color]="porcentajeGanancia > 0 ? 'green' : (porcentajeGanancia < 0 ? 'red' : 'inherit')">
+    ({{ porcentajeGanancia | number: '1.2-2' }}%)
+  </span>
+</div>
 </div>
