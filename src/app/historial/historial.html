@@ -1,0 +1,27 @@
+<div class="historial-container">
+  <h2>Historial de Ganancias / Pérdidas</h2>
+
+  <div class="input-registro">
+    <input type="number" [(ngModel)]="nuevoMonto" placeholder="Ingresá monto (+ o -)" (keydown.enter)="agregarRegistro()"/>
+    <button (click)="agregarRegistro()" >Agregar</button>
+  </div>
+
+  <div class="registro-lista" *ngIf="registros.length > 0">
+    <div *ngFor="let r of registros; let i = index" class="registro-item">
+      <span [style.color]="r.monto >= 0 ? 'green' : 'red'">
+        {{ r.monto | number:'1.2-2' }} USD
+      </span>
+      <small>{{ r.fecha | date:'short' }}</small>
+      <button (click)="eliminarRegistro(i)">✕</button>
+    </div>
+
+    <div class="registro-total">
+      <strong>Balance total:</strong>
+      <span [style.color]="balanceTotal >= 0 ? 'green' : 'red'">
+        {{ balanceTotal | number:'1.2-2' }} USD
+      </span>
+    </div>
+  </div>
+
+  <p *ngIf="registros.length === 0">No hay registros aún.</p>
+</div>

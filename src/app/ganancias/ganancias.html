@@ -1,48 +1,51 @@
-<div class="container">
-  <h1>Calculadora de Ganancias Crypto</h1>
+<div class="registro-container">
+  <h2>Registro de Operaciones</h2>
 
-  <!-- COMPRA -->
-  <div class="bloque">
-    <h2>Compra</h2>
+  <form (ngSubmit)="agregarOperacion()">
+    <label>Monto de compra ($):</label>
+    <input type="number" [(ngModel)]="montoCompra" name="monto" required />
 
-    <label>Precio por moneda ($):</label>
-    <input type="number" [(ngModel)]="precioCompra" />
+    <label>Precio de compra:</label>
+    <input type="number" [(ngModel)]="precioCompra" name="precioCompra" required />
 
-    <label>Monto total invertido ($):</label>
-    <input type="number" [(ngModel)]="montoCompra" />
+    <label>Precio de venta:</label>
+    <input type="number" [(ngModel)]="precioVenta" name="precioVenta" required />
 
-    <div class="resultado">
-      <strong>Cantidad comprada:</strong>
-      {{ cantidadComprada | number: '1.2-2' }} monedas
-    </div>
+    <button type="submit">Agregar operación</button>
+  </form>
+
+  <h3>Operaciones</h3>
+  <table *ngIf="operaciones.length > 0">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Monto</th>
+        <th>Compra</th>
+        <th>Venta</th>
+        <th>Cantidad</th>
+        <th>Ganancia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let op of operaciones">
+        <td>{{ op.fecha | date:'short' }}</td>
+        <td>${{ op.montoCompra | number:'1.2-2' }}</td>
+        <td>${{ op.precioCompra }}</td>
+        <td>${{ op.precioVenta }}</td>
+        <td>{{ op.cantidad | number:'1.2-2' }}</td>
+        <td [style.color]="op.ganancia >= 0 ? 'green' : 'red'">
+          ${{ op.ganancia | number:'1.2-2' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="operaciones.length > 0" class="balance">
+    <strong>Balance total:</strong>
+    <span [style.color]="balanceTotal >= 0 ? 'green' : 'red'">
+      ${{ balanceTotal | number:'1.2-2' }}
+    </span>
   </div>
 
-    <!-- VENTA -->
-    <div class="bloque">
-    <h2>Venta</h2>
-
-    <label for="precioVenta">Precio de venta por moneda ($):</label>
-    <input id="precioVenta" type="number" [(ngModel)]="precioVenta" />
-
-    <label for="cantidadVenta">Cantidad a vender:</label>
-    <div class="input-with-button">
-        <input id="cantidadVenta" type="number" [(ngModel)]="cantidadVenta" />
-        <button type="button" (click)="venderTodo()" class="buttonSellAll">Todo</button>
-    </div>
-
-    <div class="resultado">
-        <strong>Monto total recibido:</strong>
-        ${{ montoVenta | number: '1.2-2' }}
-    </div>
-    </div>
-
-
-  <!-- GANANCIA -->
-  <div class="resultado final">
-  Ganancia: {{ ganancia | number: '1.2-2' }} USD
-  <span 
-    [style.color]="porcentajeGanancia > 0 ? 'green' : (porcentajeGanancia < 0 ? 'red' : 'inherit')">
-    ({{ porcentajeGanancia | number: '1.2-2' }}%)
-  </span>
-</div>
+  <button (click)="borrarTodo()">Borrar todo</button>
 </div>

@@ -1,50 +1,69 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+interface Operacion {
+  fecha: string;
+  montoCompra: number;
+  precioCompra: number;
+  precioVenta: number;
+  cantidad: number;
+  ganancia: number;
+}
+
 @Component({
-  selector: 'app-ganancias',
+  selector: 'app-registro-operaciones',
   standalone: true,
   imports: [FormsModule,CommonModule],
   templateUrl: './ganancias.html',
   styleUrls: ['./ganancias.css']
 })
-export class GananciasComponent {
-  // Compra
-  precioCompra: number = 0;
+export class GananciasComponent implements OnInit {
+  operaciones: Operacion[] = [];
+
+  // Campos del formulario
   montoCompra: number = 0;
-
-  // Venta
+  precioCompra: number = 0;
   precioVenta: number = 0;
-  cantidadVenta: number = 0;
 
-  // Calculados
-
-  get cantidadComprada(): number {
-  return this.precioCompra > 0 ? this.truncarDosDecimales(this.montoCompra / this.precioCompra) : 0;
+  ngOnInit() {
+    const data = localStorage.getItem('operaciones');
+    if (data) {
+      this.operaciones = JSON.parse(data);
+    }
   }
 
-  get montoVenta(): number {
-    return this.truncarDosDecimales(this.precioVenta * this.cantidadVenta);
+  agregarOperacion() {
+    const cantidad = this.montoCompra / this.precioCompra;
+    const montoVenta = cantidad * this.precioVenta;
+    const ganancia = montoVenta - this.montoCompra;
+
+    const nuevaOperacion: Operacion = {
+      fecha: new Date().toISOString(),
+      montoCompra: this.montoCompra,
+      precioCompra: this.precioCompra,
+      precioVenta: this.precioVenta,
+      cantidad,
+      ganancia
+    };
+
+    this.operaciones.push(nuevaOperacion);
+    localStorage.setItem('operaciones', JSON.stringify(this.operaciones));
+
+    // Limpiar
+    this.montoCompra = 0;
+    this.precioCompra = 0;
+    this.precioVenta = 0;
   }
 
-  get ganancia(): number {
-    return this.truncarDosDecimales(this.montoVenta - this.montoCompra);
+  borrarTodo() {
+    if (confirm('¿Estás seguro de borrar todas las operaciones?')) {
+      this.operaciones = [];
+      localStorage.removeItem('operaciones');
+    }
   }
 
-  get porcentajeGanancia(): number {
-    const inversion = this.montoCompra;
-    if (inversion === 0) return 0;
-    return this.truncarDosDecimales(((this.ganancia) / inversion) * 100);
+  get balanceTotal(): number {
+    return this.operaciones.reduce((acc, op) => acc + op.ganancia, 0);
   }
-
-  venderTodo() {
-  this.cantidadVenta = this.cantidadComprada;
-  }
-
-  private truncarDosDecimales(valor: number): number {
-    return Math.round(valor * 100) / 100;
-  }
-
-
 }
